@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visualkeyboard>
+  <header>
+    <version>10.0</version>
+    <kbdname>esperanto</kbdname>
+    <flags>
+      <displayunderlying/>
+    </flags>
+  </header>
+
+  <encoding name="unicode" fontname="Noto Sans" fontsize="12" />
+
+  <!-- Default layer (lowercase) -->
+  <layer>
+    <key vkey="K_Q">q</key>
+    <key vkey="K_W">w</key>
+    <key vkey="K_E">e</key>
+    <key vkey="K_R">r</key>
+    <key vkey="K_T">t</key>
+    <key vkey="K_Y">y</key>
+    <key vkey="K_U">ŭ</key>
+    <key vkey="K_I">i</key>
+    <key vkey="K_O">o</key>
+    <key vkey="K_P">p</key>
+
+    <key vkey="K_A">a</key>
+    <key vkey="K_S">ŝ</key>
+    <key vkey="K_D">d</key>
+    <key vkey="K_F">f</key>
+    <key vkey="K_G">ĝ</key>
+    <key vkey="K_H">ĥ</key>
+    <key vkey="K_J">ĵ</key>
+    <key vkey="K_K">k</key>
+    <key vkey="K_L">l</key>
+
+    <key vkey="K_Z">z</key>
+    <key vkey="K_X">x</key>
+    <key vkey="K_C">ĉ</key>
+    <key vkey="K_V">v</key>
+    <key vkey="K_B">b</key>
+    <key vkey="K_N">n</key>
+    <key vkey="K_M">m</key>
+  </layer>
+
+  <!-- Shift layer (uppercase) -->
+  <layer shift="shift">
+    <key vkey="K_Q">Q</key>
+    <key vkey="K_W">W</key>
+    <key vkey="K_E">E</key>
+    <key vkey="K_R">R</key>
+    <key vkey="K_T">T</key>
+    <key vkey="K_Y">Y</key>
+    <key vkey="K_U">Ŭ</key>
+    <key vkey="K_I">I</key>
+    <key vkey="K_O">O</key>
+    <key vkey="K_P">P</key>
+
+    <key vkey="K_A">A</key>
+    <key vkey="K_S">Ŝ</key>
+    <key vkey="K_D">D</key>
+    <key vkey="K_F">F</key>
+    <key vkey="K_G">Ĝ</key>
+    <key vkey="K_H">Ĥ</key>
+    <key vkey="K_J">Ĵ</key>
+    <key vkey="K_K">K</key>
+    <key vkey="K_L">L</key>
+
+    <key vkey="K_Z">Z</key>
+    <key vkey="K_X">X</key>
+    <key vkey="K_C">Ĉ</key>
+    <key vkey="K_V">V</key>
+    <key vkey="K_B">B</key>
+    <key vkey="K_N">N</key>
+    <key vkey="K_M">M</key>
+  </layer>
+</visualkeyboard>

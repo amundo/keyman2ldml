@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keyboard xmlns="urn:ldml:keyboard">
+  <names xmlns="">
+    <name value="esperanto"/>
+  </names>
+  <version xmlns="" platform="keyman">10.0</version>
+  <info xmlns="">
+    <description>Converted from Keyman .kvks</description>
+    <font name="Noto Sans" size="12"/>
+    <feature name="displayunderlying"/>
+  </info>
+  <keySet xmlns="">
+    <key id="K_Q" to="q"/>
+    <key id="K_W" to="w"/>
+    <key id="K_E" to="e"/>
+    <key id="K_R" to="r"/>
+    <key id="K_T" to="t"/>
+    <key id="K_Y" to="y"/>
+    <key id="K_U" to="ŭ"/>
+    <key id="K_I" to="i"/>
+    <key id="K_O" to="o"/>
+    <key id="K_P" to="p"/>
+    <key id="K_A" to="a"/>
+    <key id="K_S" to="ŝ"/>
+    <key id="K_D" to="d"/>
+    <key id="K_F" to="f"/>
+    <key id="K_G" to="ĝ"/>
+    <key id="K_H" to="ĥ"/>
+    <key id="K_J" to="ĵ"/>
+    <key id="K_K" to="k"/>
+    <key id="K_L" to="l"/>
+    <key id="K_Z" to="z"/>
+    <key id="K_X" to="x"/>
+    <key id="K_C" to="ĉ"/>
+    <key id="K_V" to="v"/>
+    <key id="K_B" to="b"/>
+    <key id="K_N" to="n"/>
+    <key id="K_M" to="m"/>
+  </keySet>
+  <keyMapSet xmlns="">
+    <keyMap id="default">
+      <map from="K_Q" to="q"/>
+      <map from="K_W" to="w"/>
+      <map from="K_E" to="e"/>
+      <map from="K_R" to="r"/>
+      <map from="K_T" to="t"/>
+      <map from="K_Y" to="y"/>
+      <map from="K_U" to="ŭ"/>
+      <map from="K_I" to="i"/>
+      <map from="K_O" to="o"/>
+      <map from="K_P" to="p"/>
+      <map from="K_A" to="a"/>
+      <map from="K_S" to="ŝ"/>
+      <map from="K_D" to="d"/>
+      <map from="K_F" to="f"/>
+      <map from="K_G" to="ĝ"/>
+      <map from="K_H" to="ĥ"/>
+      <map from="K_J" to="ĵ"/>
+      <map from="K_K" to="k"/>
+      <map from="K_L" to="l"/>
+      <map from="K_Z" to="z"/>
+      <map from="K_X" to="x"/>
+      <map from="K_C" to="ĉ"/>
+      <map from="K_V" to="v"/>
+      <map from="K_B" to="b"/>
+      <map from="K_N" to="n"/>
+      <map from="K_M" to="m"/>
+    </keyMap>
+    <keyMap id="shift">
+      <map from="K_Q" to="Q"/>
+      <map from="K_W" to="W"/>
+      <map from="K_E" to="E"/>
+      <map from="K_R" to="R"/>
+      <map from="K_T" to="T"/>
+      <map from="K_Y" to="Y"/>
+      <map from="K_U" to="Ŭ"/>
+      <map from="K_I" to="I"/>
+      <map from="K_O" to="O"/>
+      <map from="K_P" to="P"/>
+      <map from="K_A" to="A"/>
+      <map from="K_S" to="Ŝ"/>
+      <map from="K_D" to="D"/>
+      <map from="K_F" to="F"/>
+      <map from="K_G" to="Ĝ"/>
+      <map from="K_H" to="Ĥ"/>
+      <map from="K_J" to="Ĵ"/>
+      <map from="K_K" to="K"/>
+      <map from="K_L" to="L"/>
+      <map from="K_Z" to="Z"/>
+      <map from="K_X" to="X"/>
+      <map from="K_C" to="Ĉ"/>
+      <map from="K_V" to="V"/>
+      <map from="K_B" to="B"/>
+      <map from="K_N" to="N"/>
+      <map from="K_M" to="M"/>
+    </keyMap>
+  </keyMapSet>
+</keyboard>

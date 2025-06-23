@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Keyman to LDML Converter</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; max-width: 800px; }
+    #output { white-space: pre-wrap; border: 1px solid #ccc; padding: 1em; margin-top: 1em; background: #f9f9f9; }
+    #status { margin-top: 1em; font-weight: bold; }
+    <style>
+  body {
+    font-family: system-ui, sans-serif;
+    padding: 2em;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.5;
+    background: #f4f4f9;
+    color: #222;
+  }
+
+  h1 {
+    font-size: 1.75em;
+    margin-bottom: 1em;
+  }
+
+  input[type="file"],
+  button {
+    font-size: 1em;
+    padding: 0.5em 1em;
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    background: #eee;
+    cursor: not-allowed;
+  }
+
+  #status {
+    margin-top: 0.5em;
+    font-weight: 500;
+  }
+
+  #output {
+    white-space: pre-wrap;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 1em;
+    border-radius: 4px;
+    margin-top: 1em;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+</style>
+
+  </style>
+</head>
+<body>
+  <h1>Keyman to LDML Converter</h1>
+
+  <input type="file" id="fileInput" accept=".kvks" />
+  <button id="convertBtn">Convert</button>
+<button id="downloadBtn" disabled>Download LDML</button>
+  <div id="status"></div>
+
+  <pre id="output"></pre>
+
+  <script type="module">
+    import { convertKvksToLdml } from './keyman2ldml.js'
+    
+    let latestLdml = ""
+    let latestFilename = "converted.ldml"
+
+    function showStatus(message, type = "info") {
+      const status = document.getElementById("status")
+      status.innerHTML = Array.isArray(message)
+        ? message.map(m => `<div>${m}</div>`).join("")
+        : message
+      status.style.color = type === "error" ? "red"
+                        : type === "success" ? "green"
+                        : "#333"
+    }
+
+    document.getElementById('convertBtn').onclick = async () => {
+      const file = document.getElementById('fileInput').files[0]
+      if (!file) {
+        showStatus("Please select a .kvks file", "error")
+        return
+      }
+
+      const kvksText = await file.text()
+      const rawXml = convertKvksToLdml(kvksText)
+
+      const parsed = new DOMParser().parseFromString(rawXml, "application/xml")
+      const issues = basicLdmlSanityCheck(parsed)
+
+      if (issues.length > 0) {
+        showStatus(issues, "error")
+        document.getElementById("downloadBtn").disabled = true
+        return
+      } else {
+        showStatus("LDML structure looks good ✅", "success")
+      }
+
+      latestLdml = rawXml
+      latestFilename = file.name.replace(/\.kvks$/i, ".ldml")
+      document.getElementById("downloadBtn").disabled = false
+
+      document.getElementById('output').textContent = rawXml
+    }
+
+    document.getElementById("downloadBtn").onclick = () => {
+      const blob = new Blob([latestLdml], { type: "application/xml" })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = latestFilename
+      a.click()
+      URL.revokeObjectURL(url)
+    }
+
+
+    function basicLdmlSanityCheck(xmlDoc) {
+      const keyboard = xmlDoc.querySelector("keyboard")
+      const keys = xmlDoc.querySelectorAll("keySet > key")
+      const maps = xmlDoc.querySelectorAll("keyMapSet > keyMap > map")
+
+      const issues = []
+
+      if (!keyboard) issues.push("Missing <keyboard> root element")
+      if (keys.length === 0) issues.push("No <key> elements in <keySet>")
+      if (maps.length === 0) issues.push("No <map> elements in <keyMapSet>")
+
+      for (const key of keys) {
+        if (!key.hasAttribute("id")) issues.push("<key> missing 'id'")
+        if (!key.hasAttribute("to")) issues.push(`<key id="${key.getAttribute("id")}"> missing 'to'`)
+      }
+
+      for (const map of maps) {
+        if (!map.hasAttribute("from") || !map.hasAttribute("to")) {
+          issues.push("<map> missing 'from' or 'to'")
+        }
+      }
+
+      return issues
+    }
+  </script>
+</body>
+</html>
