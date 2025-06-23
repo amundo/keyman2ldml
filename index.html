@@ -7,7 +7,6 @@
     body { font-family: sans-serif; padding: 2em; max-width: 800px; }
     #output { white-space: pre-wrap; border: 1px solid #ccc; padding: 1em; margin-top: 1em; background: #f9f9f9; }
     #status { margin-top: 1em; font-weight: bold; }
-    <style>
   body {
     font-family: system-ui, sans-serif;
     padding: 2em;
@@ -65,6 +64,7 @@
   <h1>Keyman to LDML Converter</h1>
 
   <input type="file" id="fileInput" accept=".kvks" />
+  <button id="tryExampleBtn">Try an Example</button>
   <button id="convertBtn">Convert</button>
 <button id="downloadBtn" disabled>Download LDML</button>
   <div id="status"></div>
@@ -123,6 +123,34 @@
       a.download = latestFilename
       a.click()
       URL.revokeObjectURL(url)
+    }
+
+    document.getElementById("tryExampleBtn").onclick = async () => {
+      try {
+        const res = await fetch("./eo.kvks")
+        if (!res.ok) throw new Error("Could not load example file.")
+        const kvksText = await res.text()
+
+        const rawXml = convertKvksToLdml(kvksText)
+        const parsed = new DOMParser().parseFromString(rawXml, "application/xml")
+        const issues = basicLdmlSanityCheck(parsed)
+
+        if (issues.length > 0) {
+          showStatus(issues, "error")
+          document.getElementById("downloadBtn").disabled = true
+          return
+        }
+
+        latestLdml = rawXml
+        latestFilename = "esperanto.ldml"
+        document.getElementById("downloadBtn").disabled = false
+
+        showStatus("Loaded example: esperanto.kvks ✅", "success")
+        document.getElementById("output").textContent = rawXml
+      } catch (err) {
+        showStatus("Failed to load example.", "error")
+        console.error(err)
+      }
     }
 
 

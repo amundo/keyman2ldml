@@ -88,3 +88,6 @@ MIT — free to use, modify, and share.
 - Upload multiple `.kvks` files at once
 - Integration with external validators
 - Keyboard preview and layout visualization
+
+
+Please feel free to [file an issue]](https://github.com/amundo/keyman2ldml/issues/new).
